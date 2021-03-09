@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88648bcf5bd642c9b7cd5ad953f88014, type: 3}
+  m_Name: Default
+  m_EditorClassIdentifier: 
+  Generator:
+    Generators:
+    - generator:
+        invert: 0
+        generate3D: 0
+        seed: 1337
+        frequency: 0.0001
+        noiseType: 3
+        rotationType3D: 0
+        fractalType: 3
+        octaves: 9
+        lacunarity: 3
+        gain: 0.9
+        weightedStrength: 1.13
+        pingPongStrength: 1
+        distanceFunction: 3
+        returnType: 1
+        jitter: 1.79
+        warpType: 0
+        domainRotationType3D: 0
+        domainAmplitude: 53.52
+        domainFrequency: 0.004
+        domainFractalType: 4
+        domainOctaves: 10
+        domainLacunarity: 2
+        domainGain: 0.6
+      type: 1
+      weight: 1
+      amplify: 5
+      heightOffset: 0
+      warpPosition: 0
+    - generator:
+        invert: 0
+        generate3D: 0
+        seed: 1337
+        frequency: 0.015
+        noiseType: 2
+        rotationType3D: 1
+        fractalType: 4
+        octaves: 3
+        lacunarity: 2
+        gain: 0.9
+        weightedStrength: 0.5
+        pingPongStrength: 1
+        distanceFunction: 3
+        returnType: 1
+        jitter: 1.79
+        warpType: 2
+        domainRotationType3D: 1
+        domainAmplitude: 50
+        domainFrequency: 0.004
+        domainFractalType: 3
+        domainOctaves: 10
+        domainLacunarity: 2
+        domainGain: 0.78
+      type: 0
+      weight: 0.5
+      amplify: 1
+      heightOffset: 0
+      warpPosition: 1
