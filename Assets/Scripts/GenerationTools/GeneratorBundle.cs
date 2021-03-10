@@ -1,88 +1,61 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using GenerationTools;
+using Unity.Collections;
+using Unity.Jobs;
 using Unity.Mathematics;
-using UnityEngine;
+using Worldgen;
 
 
 [Serializable]
 public class GeneratorBundle
 {
 
-    public List<GeneratorBundleData> Generators;
+    public List<NoiseGenerator> Generators;
 
-    public Vector3 GetPosAt(float x, float z)
+    public float3[] GenerateMapNoise(float3[] vectors)
     {
-
-        float combinedWeight = CombinedWeight;
-        
-        Vector3 ret = new Vector3(x, 0, z);
-
-        foreach (var data in Generators)
+        List<float3[]> maps = new List<float3[]>();
+        foreach (var gen in Generators)
         {
-            float mult = combinedWeight / data.weight;
-            float y;
-            
-            if(data.warpPosition)
-            {
-                float3 warp = new float3(x, 0, z);
-                data.generator.WarpDomain(ref warp);
-                ret.x = Mathf.Lerp(ret.x, warp.x, mult);
-                ret.z = Mathf.Lerp(ret.z, warp.z, mult);
-            }
-            y = data.generator.GetNoiseValue(x, z);
-            y *= data.amplify;
-            y += data.heightOffset;
-            switch (data.type)
-            {
-                case GeneratorCombineType.Add:
-                    y = y * mult + ret.y;
-                    break;
-                case GeneratorCombineType.Multiply:
-                    y = y * mult * ret.y;
-                    break;
-                case GeneratorCombineType.Subtract:
-                    y = y * mult - ret.y;
-                    break;
-                case GeneratorCombineType.Mean:
-                    y = (y * mult + ret.y + 0.000001f) / 2;
-                    break;
-            }
-            ret.y = y;
+            NoiseGenJob jobs = new NoiseGenJob();
+            jobs.noise = gen;
+            jobs.returnVectors = new NativeArray<float3>(vectors, Allocator.TempJob);
+                
+            JobHandle handle = jobs.Schedule(vectors.Length, 64);
+            handle.Complete();
+            maps.Add(jobs.returnVectors.ToArray());
+            jobs.returnVectors.Dispose();
         }
-
-        return ret;
     }
     
     public float GetHeightAt(float x, float z)
     {
 
-        float combinedWeight = CombinedWeight;
-
         float rety = 0;
 
         foreach (var data in Generators)
         {
-            float mult =   1 / (combinedWeight / data.weight);
             float y;
             
-            y = data.generator.GetNoiseValue(x, z);
-            y *= data.amplify;
+            y = data.data.GetNoiseValue(x, z);
+            y *= data.amplitude;
             y += data.heightOffset;
             switch (data.type)
             {
-                case GeneratorCombineType.Add:
-                    y = y * mult + rety;
+                case NoiseGenerator.GeneratorCombineType.Add:
+                    y = rety + y - rety;
                     break;
-                case GeneratorCombineType.Multiply:
-                    y = y * mult * rety;
+                case NoiseGenerator.GeneratorCombineType.Multiply:
+                    y = rety * (y - rety);
                     break;
-                case GeneratorCombineType.Subtract:
-                    y = y * mult - rety;
+                case NoiseGenerator.GeneratorCombineType.Subtract:
+                    y = rety - (y - rety);
                     break;
-                case GeneratorCombineType.Mean:
-                    y = (y * mult + rety + 0.000001f) / 2;
+                case NoiseGenerator.GeneratorCombineType.Mean:
+                    if (y == 0 && rety == 0)
+                        y = 0;
+                    else
+                        y = rety + (y - rety) / 2;
                     break;
             }
             rety = y;
@@ -92,24 +65,4 @@ public class GeneratorBundle
     }
 
 
-    public float CombinedWeight => Generators.Select(p => p.weight).Sum();
-
-    [Serializable]
-    public class GeneratorBundleData
-    {
-        public NoiseData generator;
-        public GeneratorCombineType type;
-        public float weight;
-        public float amplify;
-        public float heightOffset;
-        public bool warpPosition;
-    }
-
-    public enum GeneratorCombineType
-    {
-        Mean,
-        Add,
-        Subtract,
-        Multiply
-    }
 }

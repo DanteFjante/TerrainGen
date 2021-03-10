@@ -11,17 +11,11 @@ public class WorldgenManager : MonoBehaviour
     public int width, height;
     public float scale;
     public Biome defaultBiome;
+    public Map map;
 
     private void Awake()
     {
-        defaultBiome.validate += () =>
-            {
-                if(meshFilter != null)
-                {
-                Map map = createMap();
-                meshFilter.mesh = MeshMaker.CreateFloor(map);
-            };
-        };
+
     }
 
 
@@ -42,13 +36,12 @@ public class WorldgenManager : MonoBehaviour
 
     private Map createMap()
     {
-        Map map = new Map(width+1, height+1, scale);
 
         for (int i = 0; i < width+1; i++)
         {
             for (int j = 0; j < height+1; j++)
             {
-                Vector3 pos = defaultBiome.GetPosAt(i * scale, j * scale);
+                Vector3 pos = new Vector3(i,defaultBiome.Generator.GetHeightAt(i * scale, j * scale), j);
 
                 map.SetPosition(i, j, pos);
 

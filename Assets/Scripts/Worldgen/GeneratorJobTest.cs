@@ -17,6 +17,8 @@ namespace Worldgen
         
         public MeshFilter filter;
 
+        public Map map;
+
         private void Start()
         {
             LoadMesh();
@@ -25,11 +27,9 @@ namespace Worldgen
         public void LoadMesh()
         {
             TestNoise.data.Apply();
-            
-            Map map = new Map(width, height, scale);
 
-            NoiseGenJob jobs = new NoiseGenJob();
             while (!map.IsReady()) ;
+            NoiseGenJob jobs = new NoiseGenJob();
             jobs.noise = TestNoise;
             jobs.returnVectors = new NativeArray<float3>(map.vectors, Allocator.TempJob);
                 

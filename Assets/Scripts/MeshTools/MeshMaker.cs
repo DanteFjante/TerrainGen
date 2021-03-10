@@ -11,8 +11,8 @@ public static class MeshMaker
         Mesh mesh = new Mesh();
 
         TrianglesAndUvsForPlaneJob job = new TrianglesAndUvsForPlaneJob();
-        job.height = map.height;
-        job.width = map.width;
+        job.height = (int) map.size;
+        job.width = (int) map.size;
 
         JobHandle handle = job.Schedule();
         

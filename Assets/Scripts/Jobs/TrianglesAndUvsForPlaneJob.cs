@@ -12,7 +12,6 @@ namespace Worldgen
         public NativeArray<int> returnIndicies;
         public NativeArray<float2> returnUvs;
         
-
         public void Execute()
         {
             returnIndicies = new NativeArray<int>((width-1) * (height - 1) * 6, Allocator.TempJob);

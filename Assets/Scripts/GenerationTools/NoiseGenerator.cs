@@ -10,5 +10,14 @@ namespace Worldgen
         public float amplitude;
         public float heightOffset;
         public bool warpPosition;
+        public GeneratorCombineType type;
+        
+        public enum GeneratorCombineType
+        {
+            Mean,
+            Add,
+            Subtract,
+            Multiply
+        }
     }
 }
