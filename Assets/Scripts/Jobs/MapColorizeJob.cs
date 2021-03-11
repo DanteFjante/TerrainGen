@@ -4,7 +4,7 @@ using Unity.Jobs;
 using Unity.Mathematics;
 using UnityEngine;
 
-namespace Worldgen
+namespace Jobs
 {
     [BurstCompile]
     public struct MapColorizeJob : IJobParallelFor

@@ -15,7 +15,6 @@
             <e p="NoiseGenerator.cs" t="Include" />
           </e>
           <e p="Jobs" t="Include">
-            <e p="CombineVerticesJob.cs" t="Include" />
             <e p="MapColorizeJob.cs" t="Include" />
             <e p="MapCreateJob.cs" t="Include" />
             <e p="NoiseGenJob.cs" t="Include" />

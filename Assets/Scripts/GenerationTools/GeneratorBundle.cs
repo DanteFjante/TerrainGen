@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Jobs;
 using Unity.Collections;
 using Unity.Jobs;
 using Unity.Mathematics;
@@ -14,7 +15,6 @@ public class GeneratorBundle
 
     public float3[] GenerateMapNoise(float3[] vectors)
     {
-        List<float3[]> maps = new List<float3[]>();
         foreach (var gen in Generators)
         {
             NoiseGenJob jobs = new NoiseGenJob();
@@ -23,9 +23,11 @@ public class GeneratorBundle
                 
             JobHandle handle = jobs.Schedule(vectors.Length, 64);
             handle.Complete();
-            maps.Add(jobs.returnVectors.ToArray());
+            vectors = jobs.returnVectors.ToArray();
             jobs.returnVectors.Dispose();
         }
+
+        return null;
     }
     
     public float GetHeightAt(float x, float z)

@@ -1,9 +1,11 @@
+using Unity.Burst;
 using Unity.Collections;
 using Unity.Jobs;
 using Unity.Mathematics;
 
-namespace Worldgen
+namespace Jobs
 {
+    [BurstCompile]
     public struct TrianglesAndUvsForPlaneJob : IJob
     {
         public int width;
