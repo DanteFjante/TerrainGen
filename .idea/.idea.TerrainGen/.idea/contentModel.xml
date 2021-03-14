@@ -14,6 +14,7 @@
             <e p="NoiseData.cs" t="Include" />
             <e p="NoiseGenerator.cs" t="Include" />
           </e>
+          <e p="GeneratorJobTest.cs" t="Include" />
           <e p="Jobs" t="Include">
             <e p="MapColorizeJob.cs" t="Include" />
             <e p="MapCreateJob.cs" t="Include" />
@@ -23,15 +24,10 @@
           <e p="Lib" t="Include">
             <e p="FastNoiseLite.cs" t="Include" />
           </e>
-          <e p="MeshTools" t="Include">
-            <e p="MeshMaker.cs" t="Include" />
-          </e>
           <e p="Worldgen" t="Include">
             <e p="Biome.cs" t="Include" />
-            <e p="GeneratorJobTest.cs" t="Include" />
             <e p="Map.cs" t="Include" />
             <e p="World.cs" t="Include" />
-            <e p="WorldgenManager.cs" t="Include" />
           </e>
         </e>
       </e>

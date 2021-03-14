@@ -1,115 +1,95 @@
-using System;
+using System.Linq;
 using Jobs;
 using Unity.Collections;
 using Unity.Jobs;
 using Unity.Mathematics;
+using UnityEditor;
 using UnityEngine;
-using Worldgen;
 
 [RequireComponent(typeof(MeshFilter))]
 public class Map : MonoBehaviour
 {
 
-    public MapSize size;
+    public MapSize size = MapSize.Large;
     
     public float3[] vectors;
     public Color32[] colors;
 
-    public GeneratorBundle generators;
-
-    public float scale;
+    public float scale = 1;
 
     private MeshFilter _filter;
-    private JobHandle _handle;
 
     void Awake()
     {
-        
-
-        _handle = default;
         ResetMap();
-        
     }
+    
+    public MeshFilter GetMeshFilter()
+    {
+        return _filter ??= GetComponent<MeshFilter>();
+    }
+    
 
     public void ResetMap()
     {
         vectors = new float3[(int) size * (int) size];
         colors = new Color32[(int) size * (int) size];
 
+        JobHandle handle = new JobHandle();
         MapCreateJob jobs = new MapCreateJob();
         jobs.scale = scale;
         jobs.width = (int) size;
-        jobs.returnArray = new NativeArray<float3>(vectors, Allocator.TempJob);
+        jobs.returnArray = new NativeArray<float3>(vectors, Allocator.Persistent);
 
-        while (!_handle.IsCompleted)
-        {
-            Debug.Log("Map handle is busy resetting map");
-        }
-        
-        _handle = jobs.Schedule((int)size * (int)size, 100);
-        _handle.Complete();
+        while (!handle.IsCompleted) {}
+        handle = jobs.Schedule((int)size * (int)size, 100);
+        handle.Complete();
         vectors = jobs.returnArray.ToArray();
-        jobs.returnArray.CopyTo(vectors);
         jobs.returnArray.Dispose();
     }
     
     public void Colorize(Color lowColor, Color highcolor, float fromHeight, float toHeight)
     {
+        JobHandle handle = new JobHandle();
         MapColorizeJob jobs = new MapColorizeJob();
-        jobs.colors = new NativeArray<Color32>(colors, Allocator.TempJob);
-        jobs.vectors = new NativeArray<float3>(vectors, Allocator.TempJob);
+        jobs.colors = new NativeArray<Color32>(colors, Allocator.Persistent);
+        jobs.vectors = new NativeArray<float3>(vectors, Allocator.Persistent);
         jobs.lowColor = lowColor;
         jobs.highColor = highcolor;
         jobs.fromHeight = fromHeight;
         jobs.toHeight = toHeight;
 
-        while (!_handle.IsCompleted)
-        {
-            Debug.Log("Map handle is busy colorizing map");
-        }
-        
-        _handle = jobs.Schedule((int) size * (int) size, 100);
-        _handle.Complete();
+        while (!handle.IsCompleted) {}
+        handle = jobs.Schedule((int) size * (int) size, 100);
+        handle.Complete();
         colors = jobs.colors.ToArray();
         jobs.colors.Dispose();
         jobs.vectors.Dispose();
     }
+    public void UpdateMesh()
+    {
+        
+        Mesh mesh = new Mesh();
+        
+        TrianglesAndUvsForPlaneJob job = new TrianglesAndUvsForPlaneJob((int) size);
 
-    public bool IsReady()
-    {
-        return _handle.IsCompleted;
-    }
+        JobHandle handle = job.Schedule();
+        
+        handle.Complete();
 
-    public void SetColor(int x, int y, Color color)
-    {
-        colors[x + y * (int) size] = color;
-    }
-    
-    public void SetHeight(int x, int y, float height)
-    {
-        float3 pos = vectors[x + y * (int) size];
-        pos.y = height;
-        vectors[x + y * (int) size] = pos;
-    }
-    
-    public void SetPosition(int x, int y, float3 position)
-    {
-        vectors[x + y * (int) size] = position;
-    }
+        while (!handle.IsCompleted) {}
 
-    public float GetHeight(int x, int y)
-    {
-        return vectors[x + y * (int) size].y;
-    }
-    
-    public Vector3 GetPosition(int x, int y)
-    {
-        return vectors[x + y * (int) size];
-    }
-    
-    public Color GetColor(int x, int y)
-    {
-        return colors[x + y * (int) size];
+        mesh.vertices = vectors.Select(p => new Vector3(p.x, p.y, p.z)).ToArray();
+        mesh.colors32 = colors;
+
+        mesh.triangles = job.returnIndicies.ToArray();
+        mesh.uv = job.returnUvs.Select(p => new Vector2(p.x, p.y)).ToArray();
+
+        job.returnUvs.Dispose();
+        job.returnIndicies.Dispose();
+
+        GetMeshFilter().mesh = mesh;
+
     }
     
     public enum MapSize

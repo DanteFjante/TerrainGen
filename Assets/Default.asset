@@ -14,61 +14,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Generator:
     Generators:
-    - generator:
-        invert: 0
+    - data:
+        invert: 1
         generate3D: 0
         seed: 1337
-        frequency: 0.0001
+        frequency: 0.0015
         noiseType: 3
         rotationType3D: 0
         fractalType: 3
-        octaves: 9
-        lacunarity: 3
-        gain: 0.9
-        weightedStrength: 1.13
-        pingPongStrength: 1
+        octaves: 5
+        lacunarity: 1.49
+        gain: 2.3
+        weightedStrength: 2.48
+        pingPongStrength: 0.91
         distanceFunction: 3
         returnType: 1
-        jitter: 1.79
-        warpType: 0
-        domainRotationType3D: 0
-        domainAmplitude: 53.52
-        domainFrequency: 0.004
-        domainFractalType: 4
-        domainOctaves: 10
-        domainLacunarity: 2
-        domainGain: 0.6
-      type: 1
-      weight: 1
-      amplify: 5
-      heightOffset: 0
-      warpPosition: 0
-    - generator:
-        invert: 0
-        generate3D: 0
-        seed: 1337
-        frequency: 0.015
-        noiseType: 2
-        rotationType3D: 1
-        fractalType: 4
-        octaves: 3
-        lacunarity: 2
-        gain: 0.9
-        weightedStrength: 0.5
-        pingPongStrength: 1
-        distanceFunction: 3
-        returnType: 1
-        jitter: 1.79
+        jitter: 1.21
         warpType: 2
-        domainRotationType3D: 1
-        domainAmplitude: 50
-        domainFrequency: 0.004
-        domainFractalType: 3
-        domainOctaves: 10
-        domainLacunarity: 2
-        domainGain: 0.78
-      type: 0
-      weight: 0.5
-      amplify: 1
+        domainRotationType3D: 0
+        domainAmplitude: 50.87
+        domainFrequency: 2.77
+        domainFractalType: 4
+        domainOctaves: 9
+        domainLacunarity: 0.14
+        domainGain: 0.61
+      amplitude: 1
       heightOffset: 0
       warpPosition: 1
+      type: 1
