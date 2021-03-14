@@ -12,24 +12,28 @@ namespace GenerationTools
     public class GeneratorBundle
     {
 
-        public List<NoiseGenerator> Generators;
+        public List<NoiseGenerator> generators;
         
         public void UpdateGenerators()
         {
-            foreach (var gen in Generators)
+            foreach (var gen in generators)
             {
-                gen.data.Apply();
+                if(gen.enabled)
+                    gen.data.Apply();
             }
         }
 
         public float3[] GenerateMapNoise(float3[] vectors)
         {
-            foreach (var gen in Generators)
+            foreach (var gen in generators)
             {
-                NoiseGenJob jobs = new NoiseGenJob();
-                jobs.noise = gen;
-                jobs.returnVectors = new NativeArray<float3>(vectors, Allocator.TempJob);
-                
+                if (!gen.enabled) continue;
+
+                NoiseGenJob jobs = new NoiseGenJob
+                {
+                    noise = gen, returnVectors = new NativeArray<float3>(vectors, Allocator.TempJob)
+                };
+
                 JobHandle handle = jobs.Schedule(vectors.Length, 64);
                 handle.Complete();
                 while (!handle.IsCompleted) {}
@@ -46,11 +50,9 @@ namespace GenerationTools
 
             float rety = 0;
 
-            foreach (var data in Generators)
+            foreach (var data in generators)
             {
-                float y;
-            
-                y = data.data.GetNoiseValue(x, z);
+                var y = data.data.GetNoiseValue(x, z);
                 y *= data.amplitude;
                 y += data.heightOffset;
                 switch (data.type)
@@ -69,6 +71,9 @@ namespace GenerationTools
                             y = 0;
                         else
                             y = rety + (y - rety) / 2;
+                        break;
+                    default:
+                        y = rety;
                         break;
                 }
                 rety = y;

@@ -11,6 +11,7 @@ namespace Worldgen
         public float heightOffset;
         public bool warpPosition;
         public GeneratorCombineType type;
+        public bool enabled;
         
         public enum GeneratorCombineType
         {

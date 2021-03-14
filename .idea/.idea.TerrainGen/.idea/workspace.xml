@@ -19,29 +19,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="208601ab-0606-41aa-b252-1230f03118e6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/GeneratorJobTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.TerrainGen/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TerrainGen/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.TerrainGen/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TerrainGen/.idea/indexLayout.xml" afterDir="false" />
+    <list default="true" id="208601ab-0606-41aa-b252-1230f03118e6" name="Default Changelist" comment="Updated to 2020.3 and made significant changes in code.">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TerrainGen/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TerrainGen/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Default.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Default.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/GenerationTools/GeneratorBundle.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GenerationTools/GeneratorBundle.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Jobs/CombineVerticesJob.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Jobs/CombineVerticesJob.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Jobs/TrianglesAndUvsForPlaneJob.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Jobs/TrianglesAndUvsForPlaneJob.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MeshTools.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MeshTools/MeshMaker.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MeshTools/MeshMaker.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Worldgen/Biome.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Worldgen/Biome.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Worldgen/GeneratorJobTest.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Worldgen/GeneratorJobTest.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GeneratorJobTest.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GenerationTools/NoiseData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GenerationTools/NoiseData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GenerationTools/NoiseGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GenerationTools/NoiseGenerator.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Worldgen/Map.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Worldgen/Map.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Worldgen/WorldgenManager.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Worldgen/WorldgenManager.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +42,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Scripts/GenerationTools/NoiseGenerator.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Worldgen/World.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Jobs/MapCreateJob.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Jobs/MapColorizeJob.cs" />
@@ -69,10 +51,11 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Worldgen/GeneratorJobTest.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Worldgen/WorldgenManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Worldgen/Biome.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GenerationTools/GeneratorBundle.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Worldgen/Map.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GeneratorJobTest.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Jobs/TrianglesAndUvsForPlaneJob.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Worldgen/Map.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GenerationTools/NoiseGenerator.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GenerationTools/GeneratorBundle.cs" />
       </list>
     </option>
   </component>
@@ -123,8 +106,16 @@
       <workItem from="1615301179656" duration="6026000" />
       <workItem from="1615452424780" duration="5019000" />
       <workItem from="1615557983891" duration="19506000" />
-      <workItem from="1615707743875" duration="601000" />
+      <workItem from="1615707743875" duration="1006000" />
     </task>
+    <task id="LOCAL-00001" summary="Updated to 2020.3 and made significant changes in code.">
+      <created>1615716283309</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1615716283309</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -146,6 +137,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="Updated to 2020.3 and made significant changes in code." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated to 2020.3 and made significant changes in code." />
   </component>
   <component name="WindowStateProjectService">
     <state width="2517" height="375" key="GridCell.Tab.0.bottom" timestamp="1615662533524">
@@ -216,45 +209,36 @@
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state x="1055" y="229" key="RollbackChangesDialog/-1920.0.1920.1040/0.0.2560.1040@0.0.2560.1040" timestamp="1615659811301" />
+    <state x="872" y="240" key="Vcs.Push.Dialog.v2" timestamp="1615716290158">
+      <screen x="0" y="0" width="2560" height="1040" />
+    </state>
+    <state x="872" y="240" key="Vcs.Push.Dialog.v2/-1920.0.1920.1040/0.0.2560.1040@0.0.2560.1040" timestamp="1615716290158" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/GenerationTools/GeneratorBundle.cs</url>
-          <line>39</line>
-          <properties documentPath="C:\Users\Dante\Desktop\Unity\TerrainGen\Assets\Scripts\GenerationTools\GeneratorBundle.cs" initialLine="41">
-            <startOffsets>
-              <option value="1058" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1073" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Worldgen/Map.cs</url>
-          <line>54</line>
+          <line>53</line>
           <properties documentPath="C:\Users\Dante\Desktop\Unity\TerrainGen\Assets\Scripts\Worldgen\Map.cs" initialLine="53">
             <startOffsets>
-              <option value="1347" />
+              <option value="1328" />
             </startOffsets>
             <endOffsets>
-              <option value="1416" />
+              <option value="1397" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Worldgen/Map.cs</url>
-          <line>65</line>
+          <line>64</line>
           <properties documentPath="C:\Users\Dante\Desktop\Unity\TerrainGen\Assets\Scripts\Worldgen\Map.cs" initialLine="64">
             <startOffsets>
-              <option value="1815" />
+              <option value="1796" />
             </startOffsets>
             <endOffsets>
-              <option value="1837" />
+              <option value="1818" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="11" />
