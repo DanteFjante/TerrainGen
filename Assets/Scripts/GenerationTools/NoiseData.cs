@@ -130,7 +130,7 @@ namespace GenerationTools
         /// Applies any changes made to the noise settings.
         /// Required to get any updates to the noise
         /// </summary>
-        public void Apply()
+        public readonly void Apply()
         {
 
             _fractalNoise.SetNoiseType(noiseType);
@@ -177,7 +177,7 @@ namespace GenerationTools
         /// <returns>
         /// The fractal noise height value from selected fractal noise algorithm algorithm.
         /// </returns>
-        public float GetNoiseValue(float x, float z, float y = 0)
+        public readonly float GetNoiseValue(float x, float z, float y = 0)
         {
 
             float ret = generate3D ? 
